@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Post
+from review.serializers import CommentSerializer
 
 
 class PostSerializer(ModelSerializer):
@@ -10,5 +11,7 @@ class PostSerializer(ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep['likes'] = instance.likes.all().count()
+        comments = instance.comments.all() # vse kommenty dannogo posta
+        rep['comments'] = CommentSerializer(comments, many=True).data
         return rep
     
