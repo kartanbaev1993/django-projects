@@ -9,3 +9,4 @@ class Post(models.Model):
     body = models.TextField()
     created_ad = models.DateTimeField(auto_now_add=True)
 
+# (black = True, null = True) komanda dlya ne obyazatel'nogo polya

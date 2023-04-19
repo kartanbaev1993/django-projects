@@ -35,6 +35,9 @@ def toggle_like(request, id):
 
 
 class CreateCommentAPIView(CreateAPIView):
+    """
+    CRUD dlya kommentariev
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]

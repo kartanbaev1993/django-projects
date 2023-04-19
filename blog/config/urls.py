@@ -20,6 +20,17 @@ from post.views import posts_list, posts_list_api_view, post_details, create_pos
 from review.views import toggle_like, CreateCommentAPIView, UpdateCommentAPIView, DeleteCommentAPIView
 from account.views import RegisterUserAPIView
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView)
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Python 27 API",
+        description="makers bootcamp",
+        default_version="v1",
+    ),
+    public=True
+)
 
 
 
@@ -38,4 +49,5 @@ urlpatterns = [
     path('api/comment/create/', CreateCommentAPIView.as_view()),
     path('api/comment/update/<int:pk>/', UpdateCommentAPIView.as_view()),
     path('api/comment/delete/<int:pk>/', DeleteCommentAPIView.as_view()),
+    path('docs/', schema_view.with_ui('swagger')),
 ]
